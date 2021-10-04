@@ -29,13 +29,15 @@ def BGR2MeanGreyscale(img):
     print("Execution time for non optimized function: ", "--- %s seconds ---" % (time.time() - start_time))"""
     return greyscale_img1
 
-def GetDiff(img, spec, TPP, TFP):
+def GetDiff(img, spec, TPP, TFP, counter):
 
     h, w, = img.shape[:2]
     for y in range(h):
         for x in range(w):
-            if img.item(y, x) == 255 & spec.item(y, x) == 255:
+            if img.item(y, x) == 255 and spec.item(y, x) == 255:
                 TPP += 1
-            if img.item(y, x) == 255 & spec.item(y, x) == 0:
+            if img.item(y, x) == 255 and spec.item(y, x) == 0:
                 TFP += 1
-    return TPP, TFP;
+            if spec.item(y, x) == 255:
+                counter += 1
+    return TPP, TFP, counter;

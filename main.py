@@ -11,7 +11,8 @@ specv = glob.glob("images/specv5/*")
 Totalsum = 0
 TPP = 0
 TFP = 0
-for i in range(len(images)):
+counter = 0
+for i in range(len(images)): #Running the loop dee loop
     img = cv.imread(images[i])
     img_specv = cv.imread(specv[i])
     file = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
@@ -33,7 +34,7 @@ for i in range(len(images)):
     gy = np.array([[1.0, 2.0, 1.0], [0.0, 0.0, 0.0], [-1.0, -2.0, -1.0]])
 
 
-    for y in range(row - 2):
+    for y in range(row - 2): # Edge detection
         for x in range(col - 2):
             I = file.item(y, x)
 
@@ -56,10 +57,10 @@ for i in range(len(images)):
         for x in range(col):
             I1 = sobel_image.item(y, x)
             I2 = file.item(y, x)
-            if I1 > 110: #Orig = I1 > 30
+            if I1 > 30: #Orig = I1 > 30
                 Test1_Output.itemset((y, x), 255)
                 sum1 = sum1 + 1
-            if I2 >= 256 and Test1_Output.item(y, x,) != 255: #Orig = I2 >= 245
+            if I2 >= 245 and Test1_Output.item(y, x,) != 255: #Orig = I2 >= 245
                 Test1_Output.itemset((y, x), 255)
                 onlyIntensity.itemset((y, x), 255)
                 sum1 = sum1 + 1
@@ -68,8 +69,8 @@ for i in range(len(images)):
     #Test1_Output = cv.morphologyEx(Test1_Output, cv.MORPH_ERODE, kernel1)
     #Test1_Output = cv.morphologyEx(Test1_Output, cv.MORPH_ERODE, kernel1)
     Test1_Output = cv.morphologyEx(Test1_Output, cv.MORPH_DILATE, kernel2)
-    TPP, TFP = f.GetDiff(Test1_Output, file_specv, TPP, TFP)
-    print(TPP, TFP)
+    TPP, TFP, counter = f.GetDiff(Test1_Output, file_specv, TPP, TFP, counter)
+    print("TPP = ",TPP, " TFP = ", TFP, "Total specular highlight pixels = ", counter)
     #print("sum = ", sum1)
     print(images[i])
     print(specv[i])
