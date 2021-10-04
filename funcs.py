@@ -19,7 +19,7 @@ def BGR2MeanGreyscale(img):
         for x in range(w):
             I1 = (img.item(y, x, 0) + img.item(y, x, 1) + img.item(y, x, 2))/3
             greyscale_img1.itemset((y, x), I1)
-    print("Execution time for optimized item/itemset function: ","--- %s seconds ---" % (time.time() - start_time))
+    #print("Execution time for optimized item/itemset function: ","--- %s seconds ---" % (time.time() - start_time))
 
 
     """for y in range(h):
@@ -28,3 +28,14 @@ def BGR2MeanGreyscale(img):
             greyscale_img2[y][x][0] = I2
     print("Execution time for non optimized function: ", "--- %s seconds ---" % (time.time() - start_time))"""
     return greyscale_img1
+
+def GetDiff(img, spec, TPP, TFP):
+
+    h, w, = img.shape[:2]
+    for y in range(h):
+        for x in range(w):
+            if img.item(y, x) == 255 & spec.item(y, x) == 255:
+                TPP += 1
+            if img.item(y, x) == 255 & spec.item(y, x) == 0:
+                TFP += 1
+    return TPP, TFP;

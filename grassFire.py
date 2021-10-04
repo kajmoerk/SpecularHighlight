@@ -7,6 +7,7 @@ def RecursiveGrassFire(img, showimg):
     mask = copy.copy(img)
     #kernel = np.ones((2, 2), np.uint8)
     #mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
+    #h, w = mask.shape[:2]
     h, w = mask.shape[:2]
     h = h-1
     w = w-1
