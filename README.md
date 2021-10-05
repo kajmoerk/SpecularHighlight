@@ -1,5 +1,5 @@
 # #The #Best #Specular #Highlight #Detection #Algorithm 💯💯💯💯
-## *Made by yours truly, Kaj Mørk.😘*
+## *Made by yours truly 😘*
 
 ### Dependencies:
 * OpenCV
