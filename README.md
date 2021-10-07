@@ -1,5 +1,4 @@
-# #The #Best #Specular #Highlight #Detection #Algorithm 💯💯💯💯
-## *Made by yours truly 😘*
+# Specular Highlight Detection Algorithm
 
 ### Dependencies:
 * OpenCV
